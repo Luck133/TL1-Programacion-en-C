@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Empleado    {
+    char Nombre[10];
+    char Apellido[20];
+    int Sucursal;
+    float Sueldo;
+                   };
+
+void AlmacenarInformacionTexto(FILE*);
+
+void main()
+{
+
+
+  FILE *arch;
+  int  i;
+
+  arch=fopen("Alumnos.txt","w");
+
+ if(arch){
+
+    for(i=0;i<3;i++)
+       {// Para cada alumno, leer y guardar
+       void AlmacenarInformacionTexto(arch);
+
+       }
+       fclose(arch);
+         }
+ else
+     printf("Error al abrir el archivo.");
+    return 0;
+
+}
+
+void AlmacenarInformacionTexto(FILE *arch);
+{
+
+
+int num=0;
+struct Empleado *a;
+                      // Leer datos del alumno
+printf("Nombre: ");
+scanf("%s",&a.Nombre);
+printf("Apellido: "); scanf("%s",&a.Apellido);
+printf("sucursal: "); scanf("%d",&a.sucursal);   // Almacenar datos en Archivo
+printf("sueldo: "); scanf("%f",&a.sueldo);
+
+
+int num = fprintf(arch, "Nombre= %s, Apellido= %s, Sucursal= %.d, Sueldo = %f \n",
+                  a.Nombre, a.Apellido, a.sucursal, a.sueldo);
+if (num>0)
+    {
+     printf("Registro guardado exitosamente!\n");
+     printf("Presione Enter para terminar \n");
+     scanf("%d, &i");
+
+
+    }
+
+}
