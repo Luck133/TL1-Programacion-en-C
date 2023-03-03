@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{   FILE *ptr;
+    FILE *ptr2;
+    char palabra;
+    char palabra2;
+    int n=0,linea=0;
+
+    ptr= fopen("Lectura1.txt","r");
+    ptr2= fopen("Lectura2.txt","r");
+    if(ptr==NULL && ptr2==NULL)
+    {
+        printf("error!!!!!");
+    }
+    else
+    {
+    palabra=fgetc(ptr);
+    palabra2=fgetc(ptr2);
+    n=1;
+    linea=1;
+    while((!feof(ptr))&&(!feof(ptr2))&&(palabra==palabra2)){
+            if(palabra=='\n'){linea++; n=0;}
+            palabra=fgetc(ptr);
+            palabra2=fgetc(ptr2);
+            n++;
+    }
+    if((feof(ptr))&&(feof(ptr2))){
+        printf("Los archivos son iguales!!!");
+    }
+    else{
+        printf("Los archivos no son iguales!!!\n");
+        printf("Revise el caracter %d de la linea: %d ",n,linea);
+
+    }
+
+    fclose(ptr);
+    fclose(ptr2);
+    }
+    return 0;
+}
