@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct empleado{
+   char nombre[25];
+   char apellido[25];
+   int sucursal;
+   float sueldo;
+   };
+
+void Leer(FILE *arch)
+  {
+      struct empleado e;
+      printf("Ingrese el nombre, el apellido, el nº de sucursal, y su sueldo\n\n");
+
+      scanf("%s", e.nombre);
+      scanf("%s", e.apellido);
+      scanf("%d", &e.sucursal);
+      scanf("%f", &e.sueldo);
+      fwrite(&e, sizeof(struct empleado), 1, arch);
+  }
+
+void Imprimir(FILE *arch )
+  {
+      struct empleado E;
+
+      fread(&E,sizeof(struct empleado), 1, arch);
+      while(!feof(arch))
+      {
+      printf("%s\n", E.nombre);
+      printf("%s\n", E.apellido);
+      printf("%d\n", E.sucursal);
+      printf("%f", E.sueldo);
+      printf("\n\n");
+
+      fread(&E,sizeof(struct empleado), 1, arch);
+
+      }
+
+
+
+  }
+
+
+int main()
+{
+
+   FILE *arch;
+   int i;   int num;
+
+   arch=fopen("empleados.dat", "wb+");
+
+   printf("Ingrese la cantidad de empleados que desea guardar\n");
+
+   scanf("%d",&num);
+
+   for(i=0; i<num; i++)
+   {
+      Leer(arch);
+
+
+   }
+    fclose(arch);
+    printf("\n\n");
+    arch=fopen("empleados.dat", "rb");
+
+    Imprimir(arch);
+    fclose(arch);
+
+    return 0;
+}
